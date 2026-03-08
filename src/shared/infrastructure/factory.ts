@@ -9,6 +9,7 @@ import { SupabaseAuthAdapter } from '../../auth/infrastructure/adapters/Supabase
 import { SignInWithGitHubUseCase } from '../../auth/application/SignInWithGitHubUseCase';
 import { GetCurrentSessionUseCase } from '../../auth/application/GetCurrentSessionUseCase';
 import { ProcessAuthCallbackUseCase } from '../../auth/application/ProcessAuthCallbackUseCase';
+import { SignOutUseCase } from '../../auth/application/SignOutUseCase';
 
 export class Factory {
   private static readonly apiBaseUrl = import.meta.env.VITE_API_URL || '/api';
@@ -59,5 +60,9 @@ export class Factory {
 
   static createProcessAuthCallbackUseCase(): ProcessAuthCallbackUseCase {
     return new ProcessAuthCallbackUseCase(this.getAuthAdapter());
+  }
+
+  static createSignOutUseCase(): SignOutUseCase {
+    return new SignOutUseCase(this.getAuthAdapter());
   }
 }

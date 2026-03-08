@@ -6,6 +6,7 @@ import { AuthPort, InMemoryAuthPort } from '../../auth/application/ports/AuthPor
 import { SignInWithGitHubUseCase } from '../../auth/application/SignInWithGitHubUseCase';
 import { GetCurrentSessionUseCase } from '../../auth/application/GetCurrentSessionUseCase';
 import { ProcessAuthCallbackUseCase } from '../../auth/application/ProcessAuthCallbackUseCase';
+import { SignOutUseCase } from '../../auth/application/SignOutUseCase';
 
 export class Factory {
   private static healthRepository?: HealthRepository;
@@ -41,5 +42,9 @@ export class Factory {
 
   static createProcessAuthCallbackUseCase(): ProcessAuthCallbackUseCase {
     return new ProcessAuthCallbackUseCase(this.getAuthAdapter());
+  }
+
+  static createSignOutUseCase(): SignOutUseCase {
+    return new SignOutUseCase(this.getAuthAdapter());
   }
 }

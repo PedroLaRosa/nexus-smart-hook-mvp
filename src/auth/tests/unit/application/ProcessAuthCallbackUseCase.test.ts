@@ -4,7 +4,7 @@ import { InMemoryAuthPort } from '../../../application/ports/AuthPort';
 
 describe('The ProcessAuthCallbackUseCase', () => {
   it('returns the session when authentication succeeded', async () => {
-    const existingSession = { userId: 'user-1', email: 'user@example.com', accessToken: 'token-123' };
+    const existingSession = { userId: 'user-1', email: 'user@example.com', accessToken: 'token-123', avatarUrl: 'https://example.com/avatar.png', name: 'Test User' };
     const authPort = InMemoryAuthPort.withSession(existingSession);
     const useCase = new ProcessAuthCallbackUseCase(authPort);
 

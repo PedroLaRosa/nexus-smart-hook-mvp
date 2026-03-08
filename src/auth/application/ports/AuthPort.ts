@@ -3,6 +3,7 @@ import { SessionDTO } from '../SessionDTO';
 export interface AuthPort {
   signInWithGitHub(): Promise<void>;
   getSession(): Promise<SessionDTO | undefined>;
+  signOut(): Promise<void>;
 }
 
 export class InMemoryAuthPort implements AuthPort {
@@ -21,4 +22,6 @@ export class InMemoryAuthPort implements AuthPort {
   async getSession(): Promise<SessionDTO | undefined> {
     return this.session;
   }
+
+  async signOut(): Promise<void> {}
 }
