@@ -55,12 +55,18 @@ Frontend MVP using **Hexagonal Architecture** with vertical slicing by business 
 
 ### When working in *.tsx files
 @.claude/rules/frontend-components.md
+@.claude/rules/frontend-hooks.md
+@.claude/rules/frontend-css-modules.md
+@.claude/rules/frontend-i18n.md
 
 ### When working in *.hook.ts files
 @.claude/rules/frontend-hooks.md
 
 ### When working in *.module.css files
 @.claude/rules/frontend-css-modules.md
+
+### When working in locales/**/*.json or src/shared/infrastructure/i18n/
+@.claude/rules/frontend-i18n.md
 
 ### When working in *.test.ts / *.test.tsx files
 @.claude/rules/practices-testing.md
