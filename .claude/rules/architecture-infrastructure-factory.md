@@ -1,0 +1,126 @@
+# Application Factory
+
+Scope: `**/factory.ts`, `**/Factory.ts`
+
+## No DI Container
+
+Use a simple Factory module to wire dependencies. No dependency injection containers (InversifyJS, tsyringe, etc.).
+
+---
+
+## Naming Convention
+
+| Prefix | Behavior | Use Case |
+|--------|----------|----------|
+| `get` | Returns cached instance (singleton) | Repositories, shared services |
+| `create` | Creates new instance each time | UseCases, per-request objects |
+
+---
+
+## Factory Structure
+
+```typescript
+// src/factory.ts
+
+// Cached instances
+let orderRepository: OrderRepository | null = null;
+let productRepository: ProductRepository | null = null;
+let mongoConnection: MongoClient | null = null;
+
+// --- Infrastructure (cached) ---
+
+export function getMongoConnection(): MongoClient {
+  if (!mongoConnection) {
+    mongoConnection = new MongoClient(process.env.MONGO_URI);
+  }
+  return mongoConnection;
+}
+
+export function getOrderRepository(): OrderRepository {
+  if (!orderRepository) {
+    orderRepository = new MongoOrderRepository(getMongoConnection());
+  }
+  return orderRepository;
+}
+
+export function getProductRepository(): ProductRepository {
+  if (!productRepository) {
+    productRepository = new MongoProductRepository(getMongoConnection());
+  }
+  return productRepository;
+}
+
+// --- Use Cases (new instance each time) ---
+
+export function createCreateOrderUseCase(): CreateOrderUseCase {
+  return new CreateOrderUseCase(
+    getOrderRepository(),
+    getProductRepository()
+  );
+}
+
+export function createGetOrderUseCase(): GetOrderUseCase {
+  return new GetOrderUseCase(getOrderRepository());
+}
+
+// --- Controllers (new instance each time) ---
+
+export function createOrderController(): OrderController {
+  return new OrderController(
+    createCreateOrderUseCase(),
+    createGetOrderUseCase()
+  );
+}
+```
+
+---
+
+## When to Use `get` vs `create`
+
+### `get` (cached/singleton)
+- Database connections
+- Repository adapters
+- External service adapters
+- Anything expensive to create or stateful
+
+### `create` (new instance)
+- UseCases
+- Controllers
+- Request-scoped objects
+- Anything stateless or per-request
+
+---
+
+## File Location
+
+```
+src/
+├── factory.ts          # Main factory
+├── orders/
+│   ├── domain/
+│   ├── application/
+│   └── infrastructure/
+└── products/
+    └── ...
+```
+
+---
+
+## Non-Negotiable Rules
+
+### I will NEVER:
+1. Use DI containers (InversifyJS, tsyringe, etc.)
+2. Mix `get` and `create` semantics (cached vs new)
+3. Create circular dependencies in factory
+4. Import factory inside domain layer
+
+### I will ALWAYS:
+1. Use `get` prefix for cached instances
+2. Use `create` prefix for new instances each call
+3. Keep factory at the application root
+
+---
+
+## Testing
+
+For tests, you can create separate factory files that use InMemoryRepositories instead of real adapters. See @.claude/rules/practices-inside-out.md for testing strategy.
