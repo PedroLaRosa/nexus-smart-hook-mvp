@@ -1,6 +1,6 @@
 {
   "logo": "Nexus",
-  "nav": { "dashboard": "dashboard" },
+  "nav": { "dashboard": "Dashboard" },
   "hero": {
     "headline": "<bold>Extrae el hook perfecto de 3 segundos</bold> de cualquier video",
     "description": "Analiza videos de <bold>YouTube</bold>, <bold>Twitch</bold> y almacenamiento en la nube. Nexus identifica y genera el momento de mayor impacto para captar la atención de tu audiencia desde el primer instante."
