@@ -2,9 +2,14 @@ import { HealthRepository, InMemoryHealthRepository } from '../../health/domain/
 import { HealthUseCase } from '../../health/application/HealthUseCase';
 import { Health } from '../../health/domain/entities/Health';
 import { Id } from '../domain/value-objects/Id';
+import { AuthPort, InMemoryAuthPort } from '../../auth/application/ports/AuthPort';
+import { SignInWithGitHubUseCase } from '../../auth/application/SignInWithGitHubUseCase';
+import { GetCurrentSessionUseCase } from '../../auth/application/GetCurrentSessionUseCase';
+import { ProcessAuthCallbackUseCase } from '../../auth/application/ProcessAuthCallbackUseCase';
 
 export class Factory {
   private static healthRepository?: HealthRepository;
+  private static authPort?: AuthPort;
 
   static getHealthRepository(): HealthRepository {
     if (!this.healthRepository) {
@@ -17,5 +22,24 @@ export class Factory {
 
   static createHealthUseCase(): HealthUseCase {
     return new HealthUseCase(this.getHealthRepository());
+  }
+
+  static getAuthAdapter(): AuthPort {
+    if (!this.authPort) {
+      this.authPort = InMemoryAuthPort.withoutSession();
+    }
+    return this.authPort;
+  }
+
+  static createSignInWithGitHubUseCase(): SignInWithGitHubUseCase {
+    return new SignInWithGitHubUseCase(this.getAuthAdapter());
+  }
+
+  static createGetCurrentSessionUseCase(): GetCurrentSessionUseCase {
+    return new GetCurrentSessionUseCase(this.getAuthAdapter());
+  }
+
+  static createProcessAuthCallbackUseCase(): ProcessAuthCallbackUseCase {
+    return new ProcessAuthCallbackUseCase(this.getAuthAdapter());
   }
 }

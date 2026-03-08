@@ -1,4 +1,5 @@
 import styles from './Landing.module.css';
+import { GitHubButtonContainer } from '../../../auth/infrastructure/ui/GitHubButton';
 
 export function LandingContainer() {
   return <Landing />;
@@ -9,6 +10,7 @@ export function Landing() {
     <div className={styles.page}>
       <header className={styles.header}>
         <h1 className={styles.logo}>Nexus</h1>
+        <GitHubButtonContainer />
       </header>
       <main className={styles.main}>
         <section className={styles.hero}>
