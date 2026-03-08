@@ -12,6 +12,8 @@ import { ProcessAuthCallbackUseCase } from '../../auth/application/ProcessAuthCa
 import { SignOutUseCase } from '../../auth/application/SignOutUseCase';
 import { GenerateSmartHookUseCase } from '../../smartHookFromVideo/application/GenerateSmartHookUseCase';
 import { GeminiSmartHookAdapter } from '../../smartHookFromVideo/infrastructure/adapters/GeminiSmartHookAdapter';
+import { GenerateSmartHookFromScriptUseCase } from '../../smartHookFromScript/application/GenerateSmartHookFromScriptUseCase';
+import { GeminiSmartHookFromScriptAdapter } from '../../smartHookFromScript/infrastructure/adapters/GeminiSmartHookFromScriptAdapter';
 
 export class Factory {
   private static readonly apiBaseUrl = import.meta.env.VITE_API_URL || '/api';
@@ -70,5 +72,11 @@ export class Factory {
 
   static createGenerateSmartHookUseCase(): GenerateSmartHookUseCase {
     return new GenerateSmartHookUseCase(new GeminiSmartHookAdapter(import.meta.env.VITE_GEMINI_API_KEY));
+  }
+
+  static createGenerateSmartHookFromScriptUseCase(): GenerateSmartHookFromScriptUseCase {
+    return new GenerateSmartHookFromScriptUseCase(
+      new GeminiSmartHookFromScriptAdapter(import.meta.env.VITE_GEMINI_API_KEY)
+    );
   }
 }

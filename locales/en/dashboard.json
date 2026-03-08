@@ -1,6 +1,9 @@
 {
   "dashboard": {
     "logo": "Nexus",
-    "nav": { "smart_hook_from_video": "Smart Hook from Video" }
+    "nav": {
+      "smart_hook_from_video": "Smart Hook from Video",
+      "smart_hook_from_script": "Smart Hook from Script"
+    }
   }
 }

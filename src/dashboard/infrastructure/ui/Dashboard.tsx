@@ -64,6 +64,12 @@ export function Dashboard(props: Props) {
           >
             {t('dashboard.nav.smart_hook_from_video')}
           </NavLink>
+          <NavLink
+            to={Routes.SmartHookFromScript}
+            className={({ isActive }) => (isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink)}
+          >
+            {t('dashboard.nav.smart_hook_from_script')}
+          </NavLink>
         </nav>
         <main className={styles.content}>
           <Outlet />

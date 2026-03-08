@@ -7,5 +7,14 @@
     "button_generate": "Generar hook",
     "error": "Error: {{message}}",
     "result_label": "Hook para los primeros 3 segundos:"
+  },
+  "smart-hook-from-script": {
+    "title": "Smart Hook desde Script",
+    "description": "Pega tu script de video y la IA generará el hook perfecto para los primeros 3 segundos.",
+    "script_placeholder": "Pega aquí tu script de video completo...",
+    "button_analyzing": "Analizando...",
+    "button_generate": "Generar hook",
+    "error": "Error: {{message}}",
+    "result_label": "Hook para los primeros 3 segundos:"
   }
 }
