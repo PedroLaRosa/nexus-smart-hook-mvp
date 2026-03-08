@@ -1,0 +1,15 @@
+{
+  "health": {
+    "title": "System Health",
+    "subtitle": "Current status of the application",
+    "loading": "Checking health status...",
+    "empty": "No health data available",
+    "error_title": "Error",
+    "retry": "Retry",
+    "refresh": "Refresh Status",
+    "status_label": "Status",
+    "uptime_label": "Uptime",
+    "started_label": "Started",
+    "last_check_label": "Last Check"
+  }
+}

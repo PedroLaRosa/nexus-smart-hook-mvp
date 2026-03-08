@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useUserMenu } from './UserMenu.hook';
 import { SessionDTO } from '../../application/SessionDTO';
 import { SignOutUseCase } from '../../application/SignOutUseCase';
@@ -11,10 +12,11 @@ interface Props {
 
 export function UserMenu(props: Props) {
   const hook = useUserMenu(props.signOutUseCase, props.onSignOut);
+  const { t } = useTranslation('auth');
 
   return (
     <div className={styles.container}>
-      <button className={styles.avatar} onClick={hook.toggle} aria-label="User menu">
+      <button className={styles.avatar} onClick={hook.toggle} aria-label={t('user-menu.aria_label')}>
         {props.session.avatarUrl ? (
           <img src={props.session.avatarUrl} alt={props.session.name} className={styles.avatarImage} />
         ) : (
@@ -25,7 +27,7 @@ export function UserMenu(props: Props) {
         <div className={styles.dropdown}>
           <span className={styles.userName}>{props.session.name || props.session.email}</span>
           <button className={styles.signOutButton} onClick={hook.signOut}>
-            Sign out
+            {t('user-menu.sign_out')}
           </button>
         </div>
       )}

@@ -1,0 +1,15 @@
+{
+  "health": {
+    "title": "Estado del Sistema",
+    "subtitle": "Estado actual de la aplicación",
+    "loading": "Verificando estado...",
+    "empty": "No hay datos de salud disponibles",
+    "error_title": "Error",
+    "retry": "Reintentar",
+    "refresh": "Actualizar Estado",
+    "status_label": "Estado",
+    "uptime_label": "Tiempo activo",
+    "started_label": "Iniciado",
+    "last_check_label": "Última verificación"
+  }
+}

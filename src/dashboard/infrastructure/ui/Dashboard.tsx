@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate, Outlet, NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styles from './Dashboard.module.css';
 import { Factory } from '../../../shared/infrastructure/factory';
 import { GetCurrentSessionUseCase } from '../../../auth/application/GetCurrentSessionUseCase';
@@ -25,6 +26,7 @@ export function DashboardContainer() {
 export function Dashboard(props: Props) {
   const hook = useDashboard(props.getSessionUseCase);
   const navigate = useNavigate();
+  const { t } = useTranslation('dashboard');
 
   useEffect(() => {
     hook.checkSession();
@@ -47,7 +49,7 @@ export function Dashboard(props: Props) {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <span className={styles.logo}>Nexus</span>
+        <span className={styles.logo}>{t('dashboard.logo')}</span>
         <UserMenu
           session={hook.session.getOrThrow()}
           signOutUseCase={props.signOutUseCase}
@@ -60,7 +62,7 @@ export function Dashboard(props: Props) {
             to={Routes.SmartHookFromVideo}
             className={({ isActive }) => (isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink)}
           >
-            Smart Hook from Video
+            {t('dashboard.nav.smart_hook_from_video')}
           </NavLink>
         </nav>
         <main className={styles.content}>

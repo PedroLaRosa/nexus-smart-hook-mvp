@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation, Trans } from 'react-i18next';
 import styles from './Landing.module.css';
 import { useLanding } from './Landing.hook';
 import { GitHubButtonContainer } from '../../../auth/infrastructure/ui/GitHubButton';
@@ -25,6 +26,7 @@ export function LandingContainer() {
 
 export function Landing(props: Props) {
   const hook = useLanding(props.getSessionUseCase);
+  const { t } = useTranslation('landing');
 
   useEffect(() => {
     hook.checkSession();
@@ -33,7 +35,7 @@ export function Landing(props: Props) {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
-        <h1 className={styles.logo}>Nexus</h1>
+        <h1 className={styles.logo}>{t('logo')}</h1>
         {hook.loading
           ? null
           : hook.session.fold(
@@ -41,7 +43,7 @@ export function Landing(props: Props) {
               (session) => (
                 <nav className={styles.nav}>
                   <Link to={Routes.Dashboard} className={styles.navLink}>
-                    dashboard
+                    {t('nav.dashboard')}
                   </Link>
                   <UserMenu session={session} signOutUseCase={props.signOutUseCase} onSignOut={hook.clearSession} />
                 </nav>
@@ -51,11 +53,10 @@ export function Landing(props: Props) {
       <main className={styles.main}>
         <section className={styles.hero}>
           <h2 className={styles.headline}>
-            <b>Extrae el hook perfecto de 3 segundos</b> de cualquier video
+            <Trans i18nKey="hero.headline" ns="landing" components={{ bold: <b /> }} />
           </h2>
           <p className={styles.description}>
-            Analiza videos de <b>YouTube</b>, <b>Twitch</b> y almacenamiento en la nube. Nexus identifica y genera el
-            momento de mayor impacto para captar la atención de tu audiencia desde el primer instante.
+            <Trans i18nKey="hero.description" ns="landing" components={{ bold: <b /> }} />
           </p>
         </section>
       </main>

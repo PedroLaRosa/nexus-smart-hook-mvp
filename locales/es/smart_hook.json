@@ -1,0 +1,11 @@
+{
+  "smart-hook-from-video": {
+    "title": "Smart Hook desde Video",
+    "description": "Pega la URL de un video y la IA generará el hook perfecto para los primeros 3 segundos.",
+    "url_placeholder": "https://www.youtube.com/watch?v=...",
+    "button_analyzing": "Analizando...",
+    "button_generate": "Generar hook",
+    "error": "Error: {{message}}",
+    "result_label": "Hook para los primeros 3 segundos:"
+  }
+}

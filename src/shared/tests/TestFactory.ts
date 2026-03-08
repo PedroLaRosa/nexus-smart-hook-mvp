@@ -7,6 +7,8 @@ import { SignInWithGitHubUseCase } from '../../auth/application/SignInWithGitHub
 import { GetCurrentSessionUseCase } from '../../auth/application/GetCurrentSessionUseCase';
 import { ProcessAuthCallbackUseCase } from '../../auth/application/ProcessAuthCallbackUseCase';
 import { SignOutUseCase } from '../../auth/application/SignOutUseCase';
+import { GenerateSmartHookUseCase } from '../../smartHookFromVideo/application/GenerateSmartHookUseCase';
+import { InMemorySmartHookGenerationPort } from '../../smartHookFromVideo/application/ports/SmartHookGenerationPort';
 
 export class Factory {
   private static healthRepository?: HealthRepository;
@@ -46,5 +48,9 @@ export class Factory {
 
   static createSignOutUseCase(): SignOutUseCase {
     return new SignOutUseCase(this.getAuthAdapter());
+  }
+
+  static createGenerateSmartHookUseCase(): GenerateSmartHookUseCase {
+    return new GenerateSmartHookUseCase(InMemorySmartHookGenerationPort.withHookText('Test hook text'));
   }
 }

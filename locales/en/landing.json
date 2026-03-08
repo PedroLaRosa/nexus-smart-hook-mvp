@@ -1,0 +1,8 @@
+{
+  "logo": "Nexus",
+  "nav": { "dashboard": "dashboard" },
+  "hero": {
+    "headline": "<bold>Extract the perfect 3-second hook</bold> from any video",
+    "description": "Analyze videos from <bold>YouTube</bold>, <bold>Twitch</bold> and cloud storage. Nexus identifies and generates the highest-impact moment to capture your audience's attention from the very first instant."
+  }
+}
