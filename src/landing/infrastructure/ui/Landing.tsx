@@ -1,10 +1,10 @@
-import styles from './Lading.module.css';
+import styles from './Landing.module.css';
 
-export function LadingContainer() {
-  return <Lading />;
+export function LandingContainer() {
+  return <Landing />;
 }
 
-export function Lading() {
+export function Landing() {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
