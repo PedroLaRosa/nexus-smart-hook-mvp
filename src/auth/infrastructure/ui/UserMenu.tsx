@@ -16,22 +16,14 @@ export function UserMenu(props: Props) {
     <div className={styles.container}>
       <button className={styles.avatar} onClick={hook.toggle} aria-label="User menu">
         {props.session.avatarUrl ? (
-          <img
-            src={props.session.avatarUrl}
-            alt={props.session.name}
-            className={styles.avatarImage}
-          />
+          <img src={props.session.avatarUrl} alt={props.session.name} className={styles.avatarImage} />
         ) : (
-          <span className={styles.avatarFallback}>
-            {props.session.email[0].toUpperCase()}
-          </span>
+          <span className={styles.avatarFallback}>{props.session.email[0].toUpperCase()}</span>
         )}
       </button>
       {hook.isOpen && (
         <div className={styles.dropdown}>
-          <span className={styles.userName}>
-            {props.session.name || props.session.email}
-          </span>
+          <span className={styles.userName}>{props.session.name || props.session.email}</span>
           <button className={styles.signOutButton} onClick={hook.signOut}>
             Sign out
           </button>

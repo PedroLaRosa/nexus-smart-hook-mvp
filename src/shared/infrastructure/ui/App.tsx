@@ -3,6 +3,7 @@ import { HealthContainer } from '../../../health/infrastructure/ui/Health';
 import { LandingContainer } from '../../../landing/infrastructure/ui/Landing';
 import { AuthCallbackContainer } from '../../../auth/infrastructure/ui/AuthCallback';
 import { DashboardContainer } from '../../../dashboard/infrastructure/ui/Dashboard';
+import { SmartHookFromVideoContainer } from '../../../smartHookFromVideo/infrastructure/ui/SmartHookFromVideo';
 import { Routes as AppRoutes } from './routes';
 
 export function App() {
@@ -12,7 +13,9 @@ export function App() {
         <Route path={AppRoutes.Home} element={<LandingContainer />} />
         <Route path={AppRoutes.Health} element={<HealthContainer />} />
         <Route path={AppRoutes.AuthCallback} element={<AuthCallbackContainer />} />
-        <Route path={AppRoutes.Dashboard} element={<DashboardContainer />} />
+        <Route path={AppRoutes.Dashboard} element={<DashboardContainer />}>
+          <Route path="smart-hook-from-video" element={<SmartHookFromVideoContainer />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

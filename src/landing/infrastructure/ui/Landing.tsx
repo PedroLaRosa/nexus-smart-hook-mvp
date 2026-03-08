@@ -34,15 +34,19 @@ export function Landing(props: Props) {
     <div className={styles.page}>
       <header className={styles.header}>
         <h1 className={styles.logo}>Nexus</h1>
-        {hook.loading ? null : hook.session.fold(
-          () => <GitHubButtonContainer />,
-          (session) => (
-            <nav className={styles.nav}>
-              <Link to={Routes.Dashboard} className={styles.navLink}>dashboard</Link>
-              <UserMenu session={session} signOutUseCase={props.signOutUseCase} onSignOut={hook.clearSession} />
-            </nav>
-          ),
-        )}
+        {hook.loading
+          ? null
+          : hook.session.fold(
+              () => <GitHubButtonContainer />,
+              (session) => (
+                <nav className={styles.nav}>
+                  <Link to={Routes.Dashboard} className={styles.navLink}>
+                    dashboard
+                  </Link>
+                  <UserMenu session={session} signOutUseCase={props.signOutUseCase} onSignOut={hook.clearSession} />
+                </nav>
+              )
+            )}
       </header>
       <main className={styles.main}>
         <section className={styles.hero}>

@@ -13,7 +13,13 @@ describe('The GetCurrentSessionUseCase', () => {
   });
 
   it('returns the current session when the user is authenticated', async () => {
-    const existingSession = { userId: 'user-1', email: 'user@example.com', accessToken: 'token-123', avatarUrl: 'https://example.com/avatar.png', name: 'Test User' };
+    const existingSession = {
+      userId: 'user-1',
+      email: 'user@example.com',
+      accessToken: 'token-123',
+      avatarUrl: 'https://example.com/avatar.png',
+      name: 'Test User',
+    };
     const authPort = InMemoryAuthPort.withSession(existingSession);
     const useCase = new GetCurrentSessionUseCase(authPort);
 

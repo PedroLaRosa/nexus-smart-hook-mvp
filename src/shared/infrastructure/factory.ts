@@ -10,6 +10,8 @@ import { SignInWithGitHubUseCase } from '../../auth/application/SignInWithGitHub
 import { GetCurrentSessionUseCase } from '../../auth/application/GetCurrentSessionUseCase';
 import { ProcessAuthCallbackUseCase } from '../../auth/application/ProcessAuthCallbackUseCase';
 import { SignOutUseCase } from '../../auth/application/SignOutUseCase';
+import { GenerateSmartHookUseCase } from '../../smartHookFromVideo/application/GenerateSmartHookUseCase';
+import { GeminiSmartHookAdapter } from '../../smartHookFromVideo/infrastructure/adapters/GeminiSmartHookAdapter';
 
 export class Factory {
   private static readonly apiBaseUrl = import.meta.env.VITE_API_URL || '/api';
@@ -64,5 +66,9 @@ export class Factory {
 
   static createSignOutUseCase(): SignOutUseCase {
     return new SignOutUseCase(this.getAuthAdapter());
+  }
+
+  static createGenerateSmartHookUseCase(): GenerateSmartHookUseCase {
+    return new GenerateSmartHookUseCase(new GeminiSmartHookAdapter(import.meta.env.VITE_GEMINI_API_KEY));
   }
 }

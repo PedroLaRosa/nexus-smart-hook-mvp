@@ -30,6 +30,7 @@ export default [
       ...tseslint.configs['recommended']?.rules,
       ...prettierConfig.rules,
       '@typescript-eslint/explicit-module-boundary-types': 0,
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       'no-console': 1,
       'prettier/prettier': 1,
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],

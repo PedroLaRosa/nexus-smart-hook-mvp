@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Outlet, NavLink } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 import { Factory } from '../../../shared/infrastructure/factory';
 import { GetCurrentSessionUseCase } from '../../../auth/application/GetCurrentSessionUseCase';
@@ -47,13 +47,26 @@ export function Dashboard(props: Props) {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Dashboard</h1>
+        <span className={styles.logo}>Nexus</span>
         <UserMenu
           session={hook.session.getOrThrow()}
           signOutUseCase={props.signOutUseCase}
           onSignOut={() => navigate(Routes.Home, { replace: true })}
         />
       </header>
+      <div className={styles.body}>
+        <nav className={styles.sidebar}>
+          <NavLink
+            to={Routes.SmartHookFromVideo}
+            className={({ isActive }) => (isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink)}
+          >
+            Smart Hook from Video
+          </NavLink>
+        </nav>
+        <main className={styles.content}>
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }
