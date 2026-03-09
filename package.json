@@ -1,7 +1,7 @@
 {
-  "name": "frontend-template",
+  "name": "Nexus MVP",
   "version": "1.0.0",
-  "description": "Frontend template with hexagonal architecture and React",
+  "description": "",
   "type": "module",
   "scripts": {
     "prepare": "husky install",
@@ -34,7 +34,7 @@
     "upgrade": "ncu -i",
     "upgrade:all": "ncu -u"
   },
-  "author": "Softwarecrafters.io",
+  "author": "pedro@aimplified.dev",
   "license": "MIT",
   "devDependencies": {
     "@playwright/test": "^1.50.0",
