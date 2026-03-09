@@ -43,6 +43,26 @@ describe('The SmartHookFromScript component', () => {
     });
   });
 
+  it('displays 10 alternatives after successful generation', async () => {
+    const user = userEvent.setup();
+    const hookText = 'Stop scrolling! This will change everything.';
+    const port = InMemorySmartHookFromScriptGenerationPort.withHookText(hookText);
+    const useCase = new GenerateSmartHookFromScriptUseCase(port);
+
+    render(<SmartHookFromScript useCase={useCase} />);
+
+    const textarea = screen.getByRole('textbox');
+    const button = screen.getByRole('button', { name: 'Generate hook' });
+
+    await user.type(textarea, 'My full video script text here to generate a hook');
+    await user.click(button);
+
+    await waitFor(() => {
+      expect(screen.getByText('Alternative 1')).toBeInTheDocument();
+      expect(screen.getByText('Alternative 10')).toBeInTheDocument();
+    });
+  });
+
   it('displays error message when generation fails', async () => {
     const user = userEvent.setup();
     const port = InMemorySmartHookFromScriptGenerationPort.withError();

@@ -52,8 +52,18 @@ export function SmartHookFromScript(props: Props) {
         () => null,
         (result) => (
           <div className={styles.result}>
-            <p className={styles.resultLabel}>{t('smart-hook-from-script.result_label')}</p>
-            <blockquote className={styles.hookText}>{result.hookText}</blockquote>
+            <p className={styles.resultLabel}>{t('smart-hook-from-script.recommended_label')}</p>
+            <blockquote className={styles.hookText}>{result.recommendedHook}</blockquote>
+
+            <p className={styles.resultLabel}>{t('smart-hook-from-script.alternatives_label')}</p>
+            <ol className={styles.alternativesList}>
+              {result.alternatives.map((alt, index) => (
+                <li key={index} className={styles.alternativeItem}>
+                  <span className={styles.alternativeNumber}>{index + 1}.</span>
+                  <span className={styles.alternativeText}>{alt}</span>
+                </li>
+              ))}
+            </ol>
           </div>
         )
       )}

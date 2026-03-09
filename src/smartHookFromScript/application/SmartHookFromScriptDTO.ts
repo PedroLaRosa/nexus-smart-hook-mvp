@@ -1,4 +1,5 @@
 export interface SmartHookFromScriptDTO {
-  hookText: string;
+  recommendedHook: string;
+  alternatives: string[];
   scriptText: string;
 }

@@ -45,7 +45,8 @@ describe('The useSmartHookFromScript hook', () => {
     });
 
     expect(result.current.hookResult.isSome()).toBe(true);
-    expect(result.current.hookResult.getOrThrow().hookText).toBe(hookText);
+    expect(result.current.hookResult.getOrThrow().recommendedHook).toBe(hookText);
+    expect(result.current.hookResult.getOrThrow().alternatives.length).toBe(10);
     expect(result.current.hookResult.getOrThrow().scriptText).toBe(scriptText);
     expect(result.current.loading).toBe(false);
   });

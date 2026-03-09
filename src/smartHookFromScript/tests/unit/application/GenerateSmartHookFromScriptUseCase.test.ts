@@ -11,7 +11,8 @@ describe('The GenerateSmartHookFromScriptUseCase', () => {
 
     const result = await useCase.execute(scriptText);
 
-    expect(result.hookText).toBe(hookText);
+    expect(result.recommendedHook).toBe(hookText);
+    expect(result.alternatives.length).toBe(10);
     expect(result.scriptText).toBe(scriptText);
   });
 

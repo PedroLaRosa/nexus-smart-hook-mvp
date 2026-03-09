@@ -5,7 +5,8 @@ export class GenerateSmartHookFromScriptUseCase {
   constructor(private readonly generationPort: SmartHookFromScriptGenerationPort) {}
 
   async execute(scriptText: string): Promise<SmartHookFromScriptDTO> {
-    const hookText = await this.generationPort.generate(scriptText);
-    return { hookText, scriptText };
+    const hooks = await this.generationPort.generate(scriptText);
+    const [recommendedHook, ...alternatives] = hooks;
+    return { recommendedHook, alternatives, scriptText };
   }
 }

@@ -16,6 +16,8 @@
     "button_analyzing": "Analizando...",
     "button_generate": "Generar hook",
     "error": "Error: {{message}}",
-    "result_label": "Hook para los primeros 3 segundos:"
+    "result_label": "Hook para los primeros 3 segundos:",
+    "recommended_label": "Hook recomendado:",
+    "alternatives_label": "10 alternativas:"
   }
 }
