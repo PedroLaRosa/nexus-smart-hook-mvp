@@ -67,4 +67,36 @@ describe('The useSmartHookFromVideo hook', () => {
     expect(result.current.hookResult.isNone()).toBe(true);
     expect(result.current.loading).toBe(false);
   });
+
+  it('reports URL as invalid when videoUrl is empty', () => {
+    const port = InMemorySmartHookGenerationPort.withHookText('hook');
+    const useCase = new GenerateSmartHookUseCase(port);
+    const { result } = renderHook(() => useSmartHookFromVideo(useCase));
+
+    expect(result.current.isUrlValid()).toBe(false);
+  });
+
+  it('reports URL as invalid after setting a malformed URL', () => {
+    const port = InMemorySmartHookGenerationPort.withHookText('hook');
+    const useCase = new GenerateSmartHookUseCase(port);
+    const { result } = renderHook(() => useSmartHookFromVideo(useCase));
+
+    act(() => {
+      result.current.setVideoUrl(':::bad');
+    });
+
+    expect(result.current.isUrlValid()).toBe(false);
+  });
+
+  it('reports URL as valid after setting a well-formed URL', () => {
+    const port = InMemorySmartHookGenerationPort.withHookText('hook');
+    const useCase = new GenerateSmartHookUseCase(port);
+    const { result } = renderHook(() => useSmartHookFromVideo(useCase));
+
+    act(() => {
+      result.current.setVideoUrl('https://youtube.com/watch?v=abc');
+    });
+
+    expect(result.current.isUrlValid()).toBe(true);
+  });
 });

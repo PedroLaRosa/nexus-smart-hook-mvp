@@ -1,5 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { SmartHookGenerationPort } from '../../application/ports/SmartHookGenerationPort';
+import { Url } from '../../../shared/domain/value-objects/Url';
 
 const prompt = `You are an expert video content strategist.
 Analyze the provided video and write the hook script for the first 3 seconds that will capture maximum viewer attention.
@@ -10,7 +11,7 @@ Respond with only the hook text, no explanation.`;
 export class GeminiSmartHookAdapter implements SmartHookGenerationPort {
   constructor(private readonly apiKey: string) {}
 
-  async generate(videoUrl: string): Promise<string> {
+  async generate(videoUrl: Url): Promise<string> {
     const genAI = new GoogleGenerativeAI(this.apiKey);
     const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
@@ -19,7 +20,7 @@ export class GeminiSmartHookAdapter implements SmartHookGenerationPort {
       {
         fileData: {
           mimeType: 'video/mp4',
-          fileUri: videoUrl,
+          fileUri: videoUrl.value,
         },
       },
     ]);

@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { GenerateSmartHookUseCase } from '../../../application/GenerateSmartHookUseCase';
 import { InMemorySmartHookGenerationPort } from '../../../application/ports/SmartHookGenerationPort';
+import { DomainError } from '../../../../shared/domain/DomainError';
 
 describe('The GenerateSmartHookUseCase', () => {
   it('generates a hook for a given video url', async () => {
@@ -20,5 +21,18 @@ describe('The GenerateSmartHookUseCase', () => {
     const useCase = new GenerateSmartHookUseCase(port);
 
     await expect(useCase.execute('https://youtube.com/watch?v=abc')).rejects.toThrow('Generation failed');
+  });
+
+  it('throws a validation DomainError when URL is invalid', async () => {
+    const port = InMemorySmartHookGenerationPort.withHookText('hook');
+    const useCase = new GenerateSmartHookUseCase(port);
+
+    try {
+      await useCase.execute(':::bad');
+      expect.fail('Should have thrown');
+    } catch (error) {
+      expect(error).toBeInstanceOf(DomainError);
+      expect((error as DomainError).type).toBe('validation');
+    }
   });
 });

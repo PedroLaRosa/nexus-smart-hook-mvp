@@ -3,6 +3,7 @@
     "title": "Smart Hook from Video",
     "description": "Paste a video URL and the AI will generate the perfect hook for the first 3 seconds.",
     "url_placeholder": "https://www.youtube.com/watch?v=...",
+    "url_invalid": "Please enter a valid URL (e.g. https://www.youtube.com/watch?v=...)",
     "button_analyzing": "Analyzing...",
     "button_generate": "Generate hook",
     "error": "Error: {{message}}",

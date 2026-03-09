@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Maybe } from '../../../shared/domain/Maybe';
 import { SmartHookDTO } from '../../application/SmartHookDTO';
 import { GenerateSmartHookUseCase } from '../../application/GenerateSmartHookUseCase';
+import { Url } from '../../../shared/domain/value-objects/Url';
 
 interface SmartHookState {
   hookResult: Maybe<SmartHookDTO>;
@@ -46,6 +47,8 @@ export function useSmartHookFromVideo(useCase: GenerateSmartHookUseCase) {
     }
   };
 
+  const isUrlValid = () => Url.isValid(state.videoUrl);
+
   return {
     hookResult: state.hookResult,
     loading: state.loading,
@@ -53,5 +56,6 @@ export function useSmartHookFromVideo(useCase: GenerateSmartHookUseCase) {
     videoUrl: state.videoUrl,
     setVideoUrl,
     generateHook,
+    isUrlValid,
   };
 }

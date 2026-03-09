@@ -19,6 +19,8 @@ export function SmartHookFromVideo(props: Props) {
 
   useEffect(() => {}, []);
 
+  const showUrlError = hook.videoUrl.trim() !== '' && !hook.isUrlValid();
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>{t('smart-hook-from-video.title')}</h2>
@@ -33,11 +35,8 @@ export function SmartHookFromVideo(props: Props) {
           onChange={(e) => hook.setVideoUrl(e.target.value)}
           disabled={hook.loading}
         />
-        <button
-          className={styles.button}
-          onClick={hook.generateHook}
-          disabled={hook.loading || hook.videoUrl.trim() === ''}
-        >
+        {showUrlError && <span className={styles.inputError}>{t('smart-hook-from-video.url_invalid')}</span>}
+        <button className={styles.button} onClick={hook.generateHook} disabled={hook.loading || !hook.isUrlValid()}>
           {hook.loading ? t('smart-hook-from-video.button_analyzing') : t('smart-hook-from-video.button_generate')}
         </button>
       </div>

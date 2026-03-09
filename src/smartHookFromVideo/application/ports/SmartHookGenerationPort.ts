@@ -1,5 +1,7 @@
+import { Url } from '../../../shared/domain/value-objects/Url';
+
 export interface SmartHookGenerationPort {
-  generate(videoUrl: string): Promise<string>;
+  generate(videoUrl: Url): Promise<string>;
 }
 
 export class InMemorySmartHookGenerationPort implements SmartHookGenerationPort {
@@ -16,7 +18,7 @@ export class InMemorySmartHookGenerationPort implements SmartHookGenerationPort 
     return new InMemorySmartHookGenerationPort('', true);
   }
 
-  async generate(_videoUrl: string): Promise<string> {
+  async generate(_videoUrl: Url): Promise<string> {
     if (this.shouldFail) {
       throw new Error('Generation failed');
     }

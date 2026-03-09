@@ -72,6 +72,11 @@
   outline-offset: 2px;
 }
 
+.inputError {
+  font-size: 0.875rem;
+  color: var(--error-color);
+}
+
 .error {
   padding: 1rem;
   border-radius: 0.5rem;
